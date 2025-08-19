@@ -3,7 +3,7 @@ import { Text, View } from "react-native";
 export default function HomeScreen() {
   return (
     <View className="flex-1 items-center justify-center bg-white">
-      <Text className="text-xl font-bold text-blue-500">Edit app/index.tsx to edit this screen</Text>
+      <Text className="text-4xl font-bold text-primary font-quicksand-bold">Welcome to NativeWind</Text>
     </View>
   );
 }
