@@ -1,4 +1,23 @@
-import arrowBack from "../assets/icons/arrow-back.png";
+
+export interface Offer {
+  id: number;
+  title: string;
+  image: any; 
+  color: string;
+}
+
+export interface FoodItem {
+  name: string;
+  image: any; 
+  price: number;
+}
+
+export interface Category {
+  id: string;
+  name: string;
+}
+
+// Image imports
 import arrowDown from "@/assets/icons/arrow-down.png";
 import arrowRight from "@/assets/icons/arrow-right.png";
 import bag from "@/assets/icons/bag.png";
@@ -18,6 +37,7 @@ import search from "@/assets/icons/search.png";
 import star from "@/assets/icons/star.png";
 import trash from "@/assets/icons/trash.png";
 import user from "@/assets/icons/user.png";
+import arrowBack from "../assets/icons/arrow-back.png";
 
 import avatar from "@/assets/images/avatar.png";
 import avocado from "@/assets/images/avocado.png";
@@ -41,7 +61,7 @@ import salad from "@/assets/images/salad.png";
 import success from "@/assets/images/success.png";
 import tomatoes from "@/assets/images/tomatoes.png";
 
-export const CATEGORIES = [
+export const CATEGORIES: Category[] = [
     {
         id: "1",
         name: "All",
@@ -64,7 +84,7 @@ export const CATEGORIES = [
     },
 ];
 
-export const offers = [
+export const offers: Offer[] = [
     {
         id: 1,
         title: "SUMMER COMBO",
@@ -91,7 +111,7 @@ export const offers = [
     },
 ];
 
-export const sides = [
+export const sides: FoodItem[] = [
     {
         name: "Fries",
         image: fries,
@@ -119,7 +139,7 @@ export const sides = [
     },
 ];
 
-export const toppings = [
+export const toppings: FoodItem[] = [
     {
         name: "Avocado",
         image: avocado,

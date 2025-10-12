@@ -2,6 +2,7 @@ import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import "../global.css";
+import CustomSplashScreen from "./splash";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -19,5 +20,9 @@ export default function RootLayout() {
     if (fontsLoaded) SplashScreen.hideAsync();
   }, [fontsLoaded, fontsError]);
  
+  if (!fontsLoaded) {
+    return <CustomSplashScreen />;
+  }
+
   return <Stack screenOptions={{ headerShown: false }} />;
 }
