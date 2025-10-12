@@ -1,12 +1,13 @@
 import { images, offers, type Offer } from "@/constants";
 import clsx from "clsx";
 import { Fragment } from "react";
-import { FlatList, Image, Pressable, Text, View } from "react-native";
+import { FlatList, Image, Pressable, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
   return (
     <SafeAreaView className="flex-1 bg-white">
+      {/* Never wrap a virtulaised component (FlatList, SectionList, etc.) inside a plain ScrollView. */}
       <FlatList
         data={offers}
         keyExtractor={(item: Offer) => item.id.toString()}
@@ -15,7 +16,9 @@ export default function HomeScreen() {
           return <View>
             <Pressable
               className={clsx("offer-card", isEven ? "flex-row-reverse" : "flex-row")}
-              style={{ backgroundColor: item.color }}>
+              style={{ backgroundColor: item.color }}
+              android_ripple={{ color: "#fffff22" }}
+            >
               {({ pressed }) => (
                 <Fragment>
                   <View className={"h-full w-1/2"}>
@@ -36,6 +39,21 @@ export default function HomeScreen() {
           </View>
         }}
         contentContainerClassName="pb-28 px-5"
+        ListHeaderComponent={() => {
+          return (
+          <View className={"flex-between flex-row w-full my-5"}>
+
+            <View className={"flex-start"}>
+              <Text className={"small-bold text-primary"}>DELIVER TO</Text>
+              <TouchableOpacity className={"flex-center flex-row gap-x-1 mt-0.5"}>
+                <Text className={"paragraph-bold text-dark-100"}>Bangalore</Text>
+                <Image source={images.arrowDown} className="size-3" resizeMode="contain" />
+              </TouchableOpacity>
+            </View>
+
+            <Text>Cart</Text>
+          </View>)
+        }}
       />
     </SafeAreaView>
   );
