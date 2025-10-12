@@ -1,3 +1,4 @@
+import CartButton from "@/components/CartButton";
 import { images, offers, type Offer } from "@/constants";
 import clsx from "clsx";
 import { Fragment } from "react";
@@ -51,7 +52,7 @@ export default function HomeScreen() {
               </TouchableOpacity>
             </View>
 
-            <Text>Cart</Text>
+            <CartButton/>
           </View>)
         }}
       />
