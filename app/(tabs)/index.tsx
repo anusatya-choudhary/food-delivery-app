@@ -8,7 +8,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export default function HomeScreen() {
   return (
     <SafeAreaView className="flex-1 bg-white">
-      {/* Never wrap a virtulaised component (FlatList, SectionList, etc.) inside a plain ScrollView. */}
+      {/* Never wrap a virtualised component (FlatList, SectionList, etc.) inside a plain ScrollView. */}
       <FlatList
         data={offers}
         keyExtractor={(item: Offer) => item.id.toString()}
