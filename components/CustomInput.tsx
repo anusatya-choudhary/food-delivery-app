@@ -34,6 +34,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
         placeholder={placeholder}
         placeholderTextColor="#888"
         className={cn('input', isFocused ? 'border-primary' : 'border-gray-300')}
+        onChangeText={onChangeText}
       />
     </View>
   );

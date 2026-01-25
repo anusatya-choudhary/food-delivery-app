@@ -1,8 +1,8 @@
 import CustomButton from "@/components/CustomButton";
 import CustomInput from "@/components/CustomInput";
-import { Link, router } from "expo-router";
+import { Link } from "expo-router";
 import { useState } from "react";
-import { Alert, Text, TouchableOpacity, View } from "react-native";
+import { Alert, Text,  View } from "react-native";
 
 
 const SignIn: React.FC = () => {
@@ -16,6 +16,7 @@ const SignIn: React.FC = () => {
   const handleSubmit = async () => {
     if (form.email === '' || form.password === '') {
       Alert.alert('Error', 'Please fill valid email and password');
+      return;
     }
     setIsSubmitting(true);
     try {
