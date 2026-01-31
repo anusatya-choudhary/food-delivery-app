@@ -1,8 +1,9 @@
 import { Alert, Text, View } from "react-native";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import CustomInput from "@/components/CustomInput";
 import CustomButton from "@/components/CustomButton";
 import { useState } from "react";
+import { createUser } from "@/lib/appwrite";
 
 
 const SignUp: React.FC = () => {
@@ -14,14 +15,15 @@ const SignUp: React.FC = () => {
   });
 
   const handleSubmit = async () => {
-    if (form.name === '' || form.email === '' || form.password === '') {
+    const {name, email, password} = form
+    if (name === '' || email === '' || password === '') {
       Alert.alert('Error', 'Please fill valid name, email and password');
       return;
     }
     setIsSubmitting(true);
     try {
-      // Call appwrite sign-up function
-      Alert.alert('Success', 'User signed up successfully');
+      await createUser({name, email, password});
+      router.replace('/');
     } catch (error) {
       Alert.alert('Error', (error as Error).message);
     } finally {
