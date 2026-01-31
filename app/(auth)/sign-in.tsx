@@ -4,7 +4,7 @@ import { signIn } from "@/lib/appwrite";
 import { Link, router } from "expo-router";
 import { useState } from "react";
 import { Alert, Text,  View } from "react-native";
-
+import * as Sentry from '@sentry/react-native';
 
 const SignIn: React.FC = () => {
 
@@ -26,6 +26,18 @@ const SignIn: React.FC = () => {
       router.replace('/');
     } catch (error) {
       Alert.alert('Error', (error as Error).message);
+      Sentry.captureException(error, {
+        level: 'warning',
+        fingerprint: ['sign-in', 'auth-error'],
+        tags: {
+          feature: 'auth',
+          screen: 'sign-in',
+        },
+        extra: {
+          hasEmail: !!form.email,
+          hasPassword: !!form.password,
+        },
+      });
     } finally {
       setIsSubmitting(false);
     }
