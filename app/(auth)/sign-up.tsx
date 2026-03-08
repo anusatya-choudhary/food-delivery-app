@@ -4,6 +4,7 @@ import CustomInput from "@/components/CustomInput";
 import CustomButton from "@/components/CustomButton";
 import { useState } from "react";
 import { createUser } from "@/lib/appwrite";
+import * as Sentry from '@sentry/react-native';
 
 
 const SignUp: React.FC = () => {
@@ -26,6 +27,19 @@ const SignUp: React.FC = () => {
       router.replace('/');
     } catch (error) {
       Alert.alert('Error', (error as Error).message);
+      Sentry.captureException(error, {
+        level: 'warning',
+        fingerprint: ['sign-up', 'auth-error'],
+        tags: {
+          feature: 'auth',
+          screen: 'sign-up',
+        },
+        extra: {
+          hasName: !!form.name,
+          hasEmail: !!form.email,
+          hasPassword: !!form.password,
+        },
+      });
     } finally {
       setIsSubmitting(false);
     }
