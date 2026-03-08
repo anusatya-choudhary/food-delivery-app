@@ -1,5 +1,5 @@
-import "react-native-url-polyfill/auto";
 import { Account, Avatars, Client, Databases, ID } from "react-native-appwrite";
+import "react-native-url-polyfill/auto";
 import type { CreateUserParams, SignInParams } from "./appwrite.types";
 
 // Appwrite Configuration
